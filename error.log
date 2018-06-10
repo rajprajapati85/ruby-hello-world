@@ -1,0 +1,2998 @@
+
+PLAY [Create initial host groups for localhost] ********************************
+
+TASK [include_vars] ************************************************************
+ok: [localhost]
+
+PLAY [Populate config host groups] *********************************************
+
+TASK [Evaluate groups - g_etcd_hosts or g_new_etcd_hosts required] *************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_master_hosts or g_new_master_hosts required] *********
+skipping: [localhost]
+
+TASK [Evaluate groups - g_node_hosts or g_new_node_hosts required] *************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_lb_hosts required] ***********************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_nfs_hosts required] **********************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_nfs_hosts is single host] ****************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_glusterfs_hosts required] ****************************
+skipping: [localhost]
+
+TASK [Evaluate oo_all_hosts] ***************************************************
+ok: [localhost] => (item=10.0.2.202)
+ok: [localhost] => (item=10.0.2.203)
+
+TASK [Evaluate oo_masters] *****************************************************
+ok: [localhost] => (item=10.0.2.202)
+
+TASK [Evaluate oo_first_master] ************************************************
+ok: [localhost]
+
+TASK [Evaluate oo_new_etcd_to_config] ******************************************
+
+TASK [Evaluate oo_masters_to_config] *******************************************
+ok: [localhost] => (item=10.0.2.202)
+
+TASK [Evaluate oo_etcd_to_config] **********************************************
+
+TASK [Evaluate oo_first_etcd] **************************************************
+skipping: [localhost]
+
+TASK [Evaluate oo_etcd_hosts_to_upgrade] ***************************************
+
+TASK [Evaluate oo_etcd_hosts_to_backup] ****************************************
+ok: [localhost] => (item=10.0.2.202)
+
+TASK [Evaluate oo_nodes_to_config] *********************************************
+ok: [localhost] => (item=10.0.2.202)
+ok: [localhost] => (item=10.0.2.203)
+
+TASK [Add master to oo_nodes_to_config] ****************************************
+skipping: [localhost] => (item=10.0.2.202) 
+
+TASK [Evaluate oo_lb_to_config] ************************************************
+
+TASK [Evaluate oo_nfs_to_config] ***********************************************
+
+TASK [Evaluate oo_glusterfs_to_config] *****************************************
+
+TASK [Evaluate oo_etcd_to_migrate] *********************************************
+ok: [localhost] => (item=10.0.2.202)
+
+PLAY [Ensure that all non-node hosts are accessible] ***************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.0.2.202]
+
+PLAY [Initialize host facts] ***************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+ok: [10.0.2.203] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+ok: [10.0.2.202] => (item=iproute)
+ok: [10.0.2.203] => (item=iproute)
+ok: [10.0.2.202] => (item=python-dbus)
+ok: [10.0.2.202] => (item=PyYAML)
+ok: [10.0.2.202] => (item=yum-utils)
+ok: [10.0.2.203] => (item=python-dbus)
+ok: [10.0.2.203] => (item=PyYAML)
+ok: [10.0.2.203] => (item=yum-utils)
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+skipping: [10.0.2.203] => (item=atomic) 
+skipping: [10.0.2.203] => (item=ostree) 
+skipping: [10.0.2.203] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+changed: [10.0.2.203]
+changed: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts] *********************************************************
+ok: [10.0.2.203]
+ok: [10.0.2.202]
+
+TASK [set_fact] ****************************************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+PLAY [Gather and set facts for node hosts] *************************************
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+ok: [10.0.2.203] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+skipping: [10.0.2.203] => (item=iproute) 
+skipping: [10.0.2.203] => (item=python-dbus) 
+skipping: [10.0.2.203] => (item=PyYAML) 
+skipping: [10.0.2.203] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+skipping: [10.0.2.203] => (item=atomic) 
+skipping: [10.0.2.203] => (item=ostree) 
+skipping: [10.0.2.203] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.203]
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [command] *****************************************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [Warn user about bad openshift_hostname values] ***************************
+skipping: [10.0.2.202]
+
+PLAY [Verify compatible yum/subscription-manager combination] ******************
+
+TASK [Check for bad combinations of yum and subscription-manager] **************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [fail] ********************************************************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+PLAY [Determine openshift_version to configure on first master] ****************
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : openshift_repos detect ostree] *************************
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Ensure libselinux-python is installed] *****************
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Create any additional repos that are defined] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Remove the additional repos if no longer defined] ******
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Configure origin gpg keys] *****************************
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Configure correct origin release repository] ***********
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin36.repo.j2)
+
+TASK [openshift_repos : Ensure clean repo cache in the event repos have been changed manually] ***
+changed: [10.0.2.202] => {}
+
+MSG:
+
+First run of openshift_repos
+
+TASK [openshift_repos : Record that openshift_repos already ran] ***************
+ok: [10.0.2.202]
+
+RUNNING HANDLER [openshift_repos : refresh cache] ******************************
+changed: [10.0.2.202]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+
+TASK [openshift_docker_facts : Set docker facts] *******************************
+ok: [10.0.2.202] => (item={u'local_facts': {u'blocked_registries': u'', u'hosted_registry_insecure': False, u'log_driver': u'', u'disable_push_dockerhub': u'', u'selinux_enabled': u'', u'additional_registries': u'', u'hosted_registry_network': u'172.30.0.0/16', u'log_options': u'', u'insecure_registries': u'', u'options': u'', u'use_system_container': False}, u'role': u'docker'})
+ok: [10.0.2.202] => (item={u'local_facts': {u'sdn_mtu': u''}, u'role': u'node'})
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+ok: [10.0.2.202]
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+ok: [10.0.2.202]
+
+TASK [os_firewall : Assert - Do not use firewalld on Atomic Host] **************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install firewalld packages] ********************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Ensure iptables services are not enabled] ******************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=ip6tables) 
+
+TASK [os_firewall : Wait 10 seconds after disabling iptables] ******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Start and enable firewalld service] ************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the firewalld service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Restart polkitd] *******************************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait for polkit action to have been created] ***************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add firewalld allow rules] *********************************
+
+TASK [os_firewall : Remove firewalld allow rules] ******************************
+
+TASK [os_firewall : Ensure firewalld service is not enabled] *******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait 10 seconds after disabling firewalld] *****************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install iptables packages] *********************************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=iptables-services) 
+
+TASK [os_firewall : Start and enable iptables service] *************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the iptables service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add iptables allow rules] **********************************
+
+TASK [os_firewall : Remove iptables rules] *************************************
+
+TASK [docker : Getting current systemd-udevd exec command] *********************
+skipping: [10.0.2.202]
+
+TASK [docker : Assure systemd-udevd.service.d directory exists] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Create systemd-udevd override file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Get current installed Docker version] ***************************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if Docker pre-installed but too old] ******************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if requested Docker is too old] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail if Docker version requested but downgrade is required] *****
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if attempting to upgrade Docker across the 1.10 boundary] ***
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure docker.service.d directory exists] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Docker service unit file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set registry params] ********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'ADD_REGISTRY', u'reg_flag': u'--add-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'BLOCK_REGISTRY', u'reg_flag': u'--block-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'INSECURE_REGISTRY', u'reg_flag': u'--insecure-registry', u'reg_fact_val': u''}) 
+
+TASK [docker : Set Proxy Settings] *********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'HTTP_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'HTTPS_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'NO_PROXY', u'reg_fact_val': u''}) 
+
+TASK [docker : Set various Docker options] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Docker Network OPTIONS] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Detect if docker is already started] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Docker service] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Check for credentials file for registry auth] *******************
+skipping: [10.0.2.202]
+
+TASK [docker : Create credentials for docker cli registry auth] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail quickly if openshift_docker_options are set] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-selinux is installed] **************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure atomic is installed] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure runc is installed] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker so we can use the client] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : Disable Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add http_proxy to /etc/atomic.conf] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add https_proxy to /etc/atomic.conf] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add no_proxy to /etc/atomic.conf] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set to default prepend] *****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Use Red Hat Registry for image when distribution is Red Hat] ****
+skipping: [10.0.2.202]
+
+TASK [docker : Use Fedora Registry for image when distribution is Fedora] ******
+skipping: [10.0.2.202]
+
+TASK [docker : Use a testing registry if requested] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set the full image name] ****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Pre-pull Container Engine System Container image] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-engine.service.d directory exists] *************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure /etc/docker directory exists] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Container Engine System Container] **********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine Service File] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Container Engine service] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_version : Abort when we cannot safely guess what Origin image version the user wanted] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : (Origin) Verify openshift_image_tag is valid] ********
+ok: [10.0.2.202] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [openshift_version : (Enterprise) Verify openshift_image_tag is valid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Use openshift.common.version fact as version to configure if already installed] ***
+ok: [10.0.2.202]
+
+TASK [openshift_version : Set rpm version to configure if openshift_pkg_version specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Get available origin version] ************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : fail] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set containerized version to configure if openshift_image_tag specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set containerized version to configure if openshift_release specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Lookup latest containerized version if no version specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set precise containerized version to configure if openshift_release specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Get available origin version] ************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : fail] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Fail if rpm version and docker image version are different] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Warn if openshift_image_tag is defined when not doing a containerized install] ***
+ok: [10.0.2.202] => {}
+
+MSG:
+
+openshift_image_tag is used for containerized installs. If you are trying to specify an image for a non-container install see oreg_url or oreg_url_master or oreg_url_node.
+
+
+TASK [openshift_version : debug] ***********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {}
+
+MSG:
+
+openshift_pkg_version was not defined. Falling back to -3.6.1
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_version was not set] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_image_tag was not set] ************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_pkg_version was not set] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_pkg_version was not set] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_version : For an RPM install, abort when the release requested does not match the available version.] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {
+    "openshift_release": "VARIABLE IS NOT DEFINED!"
+}
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {
+    "openshift_image_tag": "v3.6.1"
+}
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {
+    "openshift_pkg_version": "-3.6.1"
+}
+
+PLAY [Set openshift_version for all hosts] *************************************
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_repos : openshift_repos detect ostree] *************************
+ok: [10.0.2.203]
+
+TASK [openshift_repos : Ensure libselinux-python is installed] *****************
+ok: [10.0.2.203]
+
+TASK [openshift_repos : Create any additional repos that are defined] **********
+skipping: [10.0.2.203]
+
+TASK [openshift_repos : Remove the additional repos if no longer defined] ******
+ok: [10.0.2.203]
+
+TASK [openshift_repos : Configure origin gpg keys] *****************************
+ok: [10.0.2.203]
+
+TASK [openshift_repos : Configure correct origin release repository] ***********
+ok: [10.0.2.203] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin36.repo.j2)
+
+TASK [openshift_repos : Ensure clean repo cache in the event repos have been changed manually] ***
+changed: [10.0.2.203] => {}
+
+MSG:
+
+First run of openshift_repos
+
+TASK [openshift_repos : Record that openshift_repos already ran] ***************
+ok: [10.0.2.203]
+
+RUNNING HANDLER [openshift_repos : refresh cache] ******************************
+changed: [10.0.2.203]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.203] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.203] => (item=iproute) 
+skipping: [10.0.2.203] => (item=python-dbus) 
+skipping: [10.0.2.203] => (item=PyYAML) 
+skipping: [10.0.2.203] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.203] => (item=atomic) 
+skipping: [10.0.2.203] => (item=ostree) 
+skipping: [10.0.2.203] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.203]
+
+TASK [openshift_docker_facts : Set docker facts] *******************************
+ok: [10.0.2.203] => (item={u'local_facts': {u'blocked_registries': u'', u'hosted_registry_insecure': False, u'log_driver': u'', u'disable_push_dockerhub': u'', u'selinux_enabled': u'', u'additional_registries': u'', u'hosted_registry_network': u'172.30.0.0/16', u'log_options': u'', u'insecure_registries': u'', u'options': u'', u'use_system_container': False}, u'role': u'docker'})
+ok: [10.0.2.203] => (item={u'local_facts': {u'sdn_mtu': u''}, u'role': u'node'})
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+ok: [10.0.2.203]
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+ok: [10.0.2.203]
+
+TASK [os_firewall : Assert - Do not use firewalld on Atomic Host] **************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Install firewalld packages] ********************************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Ensure iptables services are not enabled] ******************
+skipping: [10.0.2.203] => (item=iptables) 
+skipping: [10.0.2.203] => (item=ip6tables) 
+
+TASK [os_firewall : Wait 10 seconds after disabling iptables] ******************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Start and enable firewalld service] ************************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : need to pause here, otherwise the firewalld service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Restart polkitd] *******************************************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Wait for polkit action to have been created] ***************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Add firewalld allow rules] *********************************
+
+TASK [os_firewall : Remove firewalld allow rules] ******************************
+
+TASK [os_firewall : Ensure firewalld service is not enabled] *******************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Wait 10 seconds after disabling firewalld] *****************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Install iptables packages] *********************************
+skipping: [10.0.2.203] => (item=iptables) 
+skipping: [10.0.2.203] => (item=iptables-services) 
+
+TASK [os_firewall : Start and enable iptables service] *************************
+skipping: [10.0.2.203]
+
+TASK [os_firewall : need to pause here, otherwise the iptables service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.203]
+
+TASK [os_firewall : Add iptables allow rules] **********************************
+
+TASK [os_firewall : Remove iptables rules] *************************************
+
+TASK [docker : Getting current systemd-udevd exec command] *********************
+skipping: [10.0.2.203]
+
+TASK [docker : Assure systemd-udevd.service.d directory exists] ****************
+skipping: [10.0.2.203]
+
+TASK [docker : Create systemd-udevd override file] *****************************
+skipping: [10.0.2.203]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Get current installed Docker version] ***************************
+skipping: [10.0.2.203]
+
+TASK [docker : Error out if Docker pre-installed but too old] ******************
+skipping: [10.0.2.203]
+
+TASK [docker : Error out if requested Docker is too old] ***********************
+skipping: [10.0.2.203]
+
+TASK [docker : Fail if Docker version requested but downgrade is required] *****
+skipping: [10.0.2.203]
+
+TASK [docker : Error out if attempting to upgrade Docker across the 1.10 boundary] ***
+skipping: [10.0.2.203]
+
+TASK [docker : Install Docker] *************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Ensure docker.service.d directory exists] ***********************
+skipping: [10.0.2.203]
+
+TASK [docker : Configure Docker service unit file] *****************************
+skipping: [10.0.2.203]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Set registry params] ********************************************
+skipping: [10.0.2.203] => (item={u'reg_conf_var': u'ADD_REGISTRY', u'reg_flag': u'--add-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.203] => (item={u'reg_conf_var': u'BLOCK_REGISTRY', u'reg_flag': u'--block-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.203] => (item={u'reg_conf_var': u'INSECURE_REGISTRY', u'reg_flag': u'--insecure-registry', u'reg_fact_val': u''}) 
+
+TASK [docker : Set Proxy Settings] *********************************************
+skipping: [10.0.2.203] => (item={u'reg_conf_var': u'HTTP_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.203] => (item={u'reg_conf_var': u'HTTPS_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.203] => (item={u'reg_conf_var': u'NO_PROXY', u'reg_fact_val': u''}) 
+
+TASK [docker : Set various Docker options] *************************************
+skipping: [10.0.2.203]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Configure Docker Network OPTIONS] *******************************
+skipping: [10.0.2.203]
+
+TASK [docker : Detect if docker is already started] ****************************
+skipping: [10.0.2.203]
+
+TASK [docker : Start the Docker service] ***************************************
+skipping: [10.0.2.203]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Check for credentials file for registry auth] *******************
+skipping: [10.0.2.203]
+
+TASK [docker : Create credentials for docker cli registry auth] ****************
+skipping: [10.0.2.203]
+
+TASK [docker : Fail quickly if openshift_docker_options are set] ***************
+skipping: [10.0.2.203]
+
+TASK [docker : Ensure container-selinux is installed] **************************
+skipping: [10.0.2.203]
+
+TASK [docker : Ensure atomic is installed] *************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Ensure runc is installed] ***************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Install Docker so we can use the client] ************************
+skipping: [10.0.2.203]
+
+TASK [docker : Disable Docker] *************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Add http_proxy to /etc/atomic.conf] *****************************
+skipping: [10.0.2.203]
+
+TASK [docker : Add https_proxy to /etc/atomic.conf] ****************************
+skipping: [10.0.2.203]
+
+TASK [docker : Add no_proxy to /etc/atomic.conf] *******************************
+skipping: [10.0.2.203]
+
+TASK [docker : Set to default prepend] *****************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Use Red Hat Registry for image when distribution is Red Hat] ****
+skipping: [10.0.2.203]
+
+TASK [docker : Use Fedora Registry for image when distribution is Fedora] ******
+skipping: [10.0.2.203]
+
+TASK [docker : Use a testing registry if requested] ****************************
+skipping: [10.0.2.203]
+
+TASK [docker : Set the full image name] ****************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Pre-pull Container Engine System Container image] ***************
+skipping: [10.0.2.203]
+
+TASK [docker : Ensure container-engine.service.d directory exists] *************
+skipping: [10.0.2.203]
+
+TASK [docker : Ensure /etc/docker directory exists] ****************************
+skipping: [10.0.2.203]
+
+TASK [docker : Install Container Engine System Container] **********************
+skipping: [10.0.2.203]
+
+TASK [docker : Configure Container Engine Service File] ************************
+skipping: [10.0.2.203]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Configure Container Engine] *************************************
+skipping: [10.0.2.203]
+
+TASK [docker : Start the Container Engine service] *****************************
+skipping: [10.0.2.203]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_version : Abort when we cannot safely guess what Origin image version the user wanted] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : (Origin) Verify openshift_image_tag is valid] ********
+ok: [10.0.2.203] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [openshift_version : (Enterprise) Verify openshift_image_tag is valid] ****
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_version : Use openshift.common.version fact as version to configure if already installed] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Set rpm version to configure if openshift_pkg_version specified] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Get available origin version] ************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : fail] ************************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Set containerized version to configure if openshift_image_tag specified] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Set containerized version to configure if openshift_release specified] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Lookup latest containerized version if no version specified] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Set precise containerized version to configure if openshift_release specified] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Get available origin version] ************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : fail] ************************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Fail if rpm version and docker image version are different] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Warn if openshift_image_tag is defined when not doing a containerized install] ***
+ok: [10.0.2.203] => {}
+
+MSG:
+
+openshift_image_tag is used for containerized installs. If you are trying to specify an image for a non-container install see oreg_url or oreg_url_master or oreg_url_node.
+
+
+TASK [openshift_version : debug] ***********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.203] => {}
+
+MSG:
+
+openshift_pkg_version was not defined. Falling back to -3.6.1
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.203]
+
+TASK [openshift_version : Abort if openshift_version was not set] **************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Abort if openshift_image_tag was not set] ************
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Abort if openshift_pkg_version was not set] **********
+skipping: [10.0.2.203]
+
+TASK [openshift_version : Abort if openshift_pkg_version was not set] **********
+skipping: [10.0.2.203]
+
+TASK [openshift_version : For an RPM install, abort when the release requested does not match the available version.] ***
+skipping: [10.0.2.203]
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.203] => {
+    "openshift_release": "VARIABLE IS NOT DEFINED!"
+}
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.203] => {
+    "openshift_image_tag": "v3.6.1"
+}
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.203] => {
+    "openshift_pkg_version": "-3.6.1"
+}
+
+PLAY [Backup and remove generated etcd certificates] ***************************
+skipping: no hosts matched
+
+PLAY [Backup and removed deployed etcd certificates] ***************************
+skipping: no hosts matched
+
+PLAY [Redeploy etcd certificates] **********************************************
+skipping: no hosts matched
+
+PLAY [Redeploy etcd client certificates for masters] ***************************
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Load variables] ****************************************
+skipping: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml) 
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Register that this already ran] ************************
+skipping: [10.0.2.202]
+
+TASK [openshift_etcd_facts : openshift_facts] **********************************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : openshift_repos detect ostree] *************************
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Ensure libselinux-python is installed] *****************
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Create any additional repos that are defined] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Remove the additional repos if no longer defined] ******
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Configure origin gpg keys] *****************************
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Configure correct origin release repository] ***********
+skipping: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin36.repo.j2) 
+
+TASK [openshift_repos : Ensure clean repo cache in the event repos have been changed manually] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Record that openshift_repos already ran] ***************
+skipping: [10.0.2.202]
+
+TASK [etcd_common : Fail if invalid r_etcd_common_action provided] *************
+skipping: [10.0.2.202]
+
+TASK [etcd_common : Include main action task file] *****************************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Ensure CA certificate exists on etcd_ca_host] ***
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : fail] *****************************************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Check status of external etcd certificatees] ***
+skipping: [10.0.2.202] => (item=master.etcd-client.crt) 
+skipping: [10.0.2.202] => (item=master.etcd-client.key) 
+skipping: [10.0.2.202] => (item=master.etcd-ca.crt) 
+
+TASK [etcd_client_certificates : set_fact] *************************************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Ensure generated_certs directory present] *****
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Create the client csr] ************************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Sign and create the client crt] ***************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : file] *****************************************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Create local temp directory for syncing certs] ***
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Create a tarball of the etcd certs] ***********
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Retrieve the etcd cert tarballs] **************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Ensure certificate directory exists] **********
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : Unarchive etcd cert tarballs] *****************
+skipping: [10.0.2.202]
+
+TASK [etcd_client_certificates : file] *****************************************
+skipping: [10.0.2.202] => (item=master.etcd-client.crt) 
+skipping: [10.0.2.202] => (item=master.etcd-client.key) 
+skipping: [10.0.2.202] => (item=master.etcd-ca.crt) 
+
+TASK [etcd_client_certificates : Delete temporary directory] *******************
+skipping: [10.0.2.202]
+
+PLAY [Redeploy master certificates] ********************************************
+
+TASK [stat] ********************************************************************
+ok: [10.0.2.202]
+
+TASK [Backup generated certificate and config directories] *********************
+changed: [10.0.2.202 -> 10.0.2.202]
+
+TASK [Remove generated certificate directories] ********************************
+changed: [10.0.2.202] => (item=/etc/origin/generated-configs)
+
+TASK [Remove generated certificates] *******************************************
+changed: [10.0.2.202] => (item=admin.crt)
+changed: [10.0.2.202] => (item=admin.key)
+changed: [10.0.2.202] => (item=admin.kubeconfig)
+changed: [10.0.2.202] => (item=master.kubelet-client.crt)
+changed: [10.0.2.202] => (item=master.kubelet-client.key)
+changed: [10.0.2.202] => (item=master.proxy-client.crt)
+changed: [10.0.2.202] => (item=master.proxy-client.key)
+changed: [10.0.2.202] => (item=service-signer.crt)
+changed: [10.0.2.202] => (item=service-signer.key)
+changed: [10.0.2.202] => (item=etcd.server.crt)
+changed: [10.0.2.202] => (item=etcd.server.key)
+changed: [10.0.2.202] => (item=master.server.crt)
+changed: [10.0.2.202] => (item=master.server.key)
+changed: [10.0.2.202] => (item=openshift-master.crt)
+changed: [10.0.2.202] => (item=openshift-master.key)
+changed: [10.0.2.202] => (item=openshift-master.kubeconfig)
+
+TASK [Remove generated etcd client certificates] *******************************
+changed: [10.0.2.202] => (item=master.etcd-client.crt)
+changed: [10.0.2.202] => (item=master.etcd-client.key)
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_facts : Migrate legacy osm_default_subdomain fact] ******
+skipping: [10.0.2.202]
+
+TASK [openshift_master_facts : Verify required variables are set] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_master_facts : Set g_metrics_hostname] *************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_facts : set_fact] ***************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_master_facts : Set master facts] *******************************
+changed: [10.0.2.202]
+
+TASK [openshift_master_facts : Determine if scheduler config present] **********
+ok: [10.0.2.202]
+
+TASK [openshift_master_facts : Set Default scheduler predicates and priorities] ***
+ok: [10.0.2.202]
+
+TASK [openshift_master_facts : Retrieve current scheduler config] **************
+ok: [10.0.2.202]
+
+TASK [openshift_master_facts : Set openshift_master_scheduler_current_config] ***
+ok: [10.0.2.202]
+
+TASK [openshift_master_facts : Test if scheduler config is readable] ***********
+skipping: [10.0.2.202]
+
+TASK [openshift_master_facts : Set current scheduler predicates and priorities] ***
+ok: [10.0.2.202]
+
+TASK [openshift_repos : openshift_repos detect ostree] *************************
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Ensure libselinux-python is installed] *****************
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Create any additional repos that are defined] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Remove the additional repos if no longer defined] ******
+ok: [10.0.2.202]
+
+TASK [openshift_repos : Configure origin gpg keys] *****************************
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Configure correct origin release repository] ***********
+skipping: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin36.repo.j2) 
+
+TASK [openshift_repos : Ensure clean repo cache in the event repos have been changed manually] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_repos : Record that openshift_repos already ran] ***************
+skipping: [10.0.2.202]
+
+TASK [openshift_docker_facts : Set docker facts] *******************************
+ok: [10.0.2.202] => (item={u'local_facts': {u'blocked_registries': u'', u'hosted_registry_insecure': False, u'log_driver': u'', u'disable_push_dockerhub': u'', u'selinux_enabled': u'', u'additional_registries': u'', u'hosted_registry_network': u'172.30.0.0/16', u'log_options': u'', u'insecure_registries': u'', u'options': u'', u'use_system_container': False}, u'role': u'docker'})
+ok: [10.0.2.202] => (item={u'local_facts': {u'sdn_mtu': u''}, u'role': u'node'})
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+ok: [10.0.2.202]
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_docker_facts : set_fact] ***************************************
+ok: [10.0.2.202]
+
+TASK [os_firewall : Assert - Do not use firewalld on Atomic Host] **************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install firewalld packages] ********************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Ensure iptables services are not enabled] ******************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=ip6tables) 
+
+TASK [os_firewall : Wait 10 seconds after disabling iptables] ******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Start and enable firewalld service] ************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the firewalld service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Restart polkitd] *******************************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait for polkit action to have been created] ***************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add firewalld allow rules] *********************************
+
+TASK [os_firewall : Remove firewalld allow rules] ******************************
+
+TASK [os_firewall : Ensure firewalld service is not enabled] *******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait 10 seconds after disabling firewalld] *****************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install iptables packages] *********************************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=iptables-services) 
+
+TASK [os_firewall : Start and enable iptables service] *************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the iptables service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add iptables allow rules] **********************************
+
+TASK [os_firewall : Remove iptables rules] *************************************
+
+TASK [docker : Getting current systemd-udevd exec command] *********************
+skipping: [10.0.2.202]
+
+TASK [docker : Assure systemd-udevd.service.d directory exists] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Create systemd-udevd override file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Get current installed Docker version] ***************************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if Docker pre-installed but too old] ******************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if requested Docker is too old] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail if Docker version requested but downgrade is required] *****
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if attempting to upgrade Docker across the 1.10 boundary] ***
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure docker.service.d directory exists] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Docker service unit file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set registry params] ********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'ADD_REGISTRY', u'reg_flag': u'--add-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'BLOCK_REGISTRY', u'reg_flag': u'--block-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'INSECURE_REGISTRY', u'reg_flag': u'--insecure-registry', u'reg_fact_val': u''}) 
+
+TASK [docker : Set Proxy Settings] *********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'HTTP_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'HTTPS_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'NO_PROXY', u'reg_fact_val': u''}) 
+
+TASK [docker : Set various Docker options] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Docker Network OPTIONS] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Detect if docker is already started] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Docker service] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Check for credentials file for registry auth] *******************
+skipping: [10.0.2.202]
+
+TASK [docker : Create credentials for docker cli registry auth] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail quickly if openshift_docker_options are set] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-selinux is installed] **************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure atomic is installed] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure runc is installed] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker so we can use the client] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : Disable Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add http_proxy to /etc/atomic.conf] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add https_proxy to /etc/atomic.conf] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add no_proxy to /etc/atomic.conf] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set to default prepend] *****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Use Red Hat Registry for image when distribution is Red Hat] ****
+skipping: [10.0.2.202]
+
+TASK [docker : Use Fedora Registry for image when distribution is Fedora] ******
+skipping: [10.0.2.202]
+
+TASK [docker : Use a testing registry if requested] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set the full image name] ****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Pre-pull Container Engine System Container image] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-engine.service.d directory exists] *************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure /etc/docker directory exists] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Container Engine System Container] **********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine Service File] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Container Engine service] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_version : Abort when we cannot safely guess what Origin image version the user wanted] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : (Origin) Verify openshift_image_tag is valid] ********
+ok: [10.0.2.202] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [openshift_version : (Enterprise) Verify openshift_image_tag is valid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_version : Use openshift.common.version fact as version to configure if already installed] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set rpm version to configure if openshift_pkg_version specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Get available origin version] ************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : fail] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set containerized version to configure if openshift_image_tag specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set containerized version to configure if openshift_release specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Lookup latest containerized version if no version specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Set precise containerized version to configure if openshift_release specified] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Get available origin version] ************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : fail] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Fail if rpm version and docker image version are different] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Warn if openshift_image_tag is defined when not doing a containerized install] ***
+ok: [10.0.2.202] => {}
+
+MSG:
+
+openshift_image_tag is used for containerized installs. If you are trying to specify an image for a non-container install see oreg_url or oreg_url_master or oreg_url_node.
+
+
+TASK [openshift_version : debug] ***********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : debug] ***********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : set_fact] ********************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_version was not set] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_image_tag was not set] ************
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_pkg_version was not set] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_version : Abort if openshift_pkg_version was not set] **********
+skipping: [10.0.2.202]
+
+TASK [openshift_version : For an RPM install, abort when the release requested does not match the available version.] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {
+    "openshift_release": "VARIABLE IS NOT DEFINED!"
+}
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {
+    "openshift_image_tag": "v3.6.1"
+}
+
+TASK [openshift_version : debug] ***********************************************
+ok: [10.0.2.202] => {
+    "openshift_pkg_version": "-3.6.1"
+}
+
+TASK [os_firewall : Assert - Do not use firewalld on Atomic Host] **************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install firewalld packages] ********************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Ensure iptables services are not enabled] ******************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=ip6tables) 
+
+TASK [os_firewall : Wait 10 seconds after disabling iptables] ******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Start and enable firewalld service] ************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the firewalld service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Restart polkitd] *******************************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait for polkit action to have been created] ***************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add firewalld allow rules] *********************************
+
+TASK [os_firewall : Remove firewalld allow rules] ******************************
+
+TASK [os_firewall : Ensure firewalld service is not enabled] *******************
+ok: [10.0.2.202]
+
+TASK [os_firewall : Wait 10 seconds after disabling firewalld] *****************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install iptables packages] *********************************
+ok: [10.0.2.202] => (item=iptables)
+ok: [10.0.2.202] => (item=iptables-services)
+
+TASK [os_firewall : Start and enable iptables service] *************************
+ok: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the iptables service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add iptables allow rules] **********************************
+
+TASK [os_firewall : Remove iptables rules] *************************************
+
+TASK [docker : Getting current systemd-udevd exec command] *********************
+skipping: [10.0.2.202]
+
+TASK [docker : Assure systemd-udevd.service.d directory exists] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Create systemd-udevd override file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+ok: [10.0.2.202]
+
+TASK [docker : Get current installed Docker version] ***************************
+ok: [10.0.2.202]
+
+TASK [docker : Error out if Docker pre-installed but too old] ******************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if requested Docker is too old] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail if Docker version requested but downgrade is required] *****
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if attempting to upgrade Docker across the 1.10 boundary] ***
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker] *************************************************
+ok: [10.0.2.202]
+
+TASK [docker : Ensure docker.service.d directory exists] ***********************
+ok: [10.0.2.202]
+
+TASK [docker : Configure Docker service unit file] *****************************
+ok: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+ok: [10.0.2.202]
+
+TASK [docker : Set registry params] ********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'ADD_REGISTRY', u'reg_flag': u'--add-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'BLOCK_REGISTRY', u'reg_flag': u'--block-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'INSECURE_REGISTRY', u'reg_flag': u'--insecure-registry', u'reg_fact_val': u''}) 
+
+TASK [docker : Set Proxy Settings] *********************************************
+ok: [10.0.2.202] => (item={u'reg_conf_var': u'HTTP_PROXY', u'reg_fact_val': u''})
+ok: [10.0.2.202] => (item={u'reg_conf_var': u'HTTPS_PROXY', u'reg_fact_val': u''})
+ok: [10.0.2.202] => (item={u'reg_conf_var': u'NO_PROXY', u'reg_fact_val': u''})
+
+TASK [docker : Set various Docker options] *************************************
+ok: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+ok: [10.0.2.202]
+
+TASK [docker : Configure Docker Network OPTIONS] *******************************
+ok: [10.0.2.202]
+
+TASK [docker : Detect if docker is already started] ****************************
+ok: [10.0.2.202]
+
+TASK [docker : Start the Docker service] ***************************************
+ok: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+ok: [10.0.2.202]
+
+TASK [docker : Check for credentials file for registry auth] *******************
+skipping: [10.0.2.202]
+
+TASK [docker : Create credentials for docker cli registry auth] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail quickly if openshift_docker_options are set] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-selinux is installed] **************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure atomic is installed] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure runc is installed] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker so we can use the client] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : Disable Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add http_proxy to /etc/atomic.conf] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add https_proxy to /etc/atomic.conf] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add no_proxy to /etc/atomic.conf] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set to default prepend] *****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Use Red Hat Registry for image when distribution is Red Hat] ****
+skipping: [10.0.2.202]
+
+TASK [docker : Use Fedora Registry for image when distribution is Fedora] ******
+skipping: [10.0.2.202]
+
+TASK [docker : Use a testing registry if requested] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set the full image name] ****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Pre-pull Container Engine System Container image] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-engine.service.d directory exists] *************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure /etc/docker directory exists] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Container Engine System Container] **********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine Service File] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Container Engine service] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Assert - Do not use firewalld on Atomic Host] **************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install firewalld packages] ********************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Ensure iptables services are not enabled] ******************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=ip6tables) 
+
+TASK [os_firewall : Wait 10 seconds after disabling iptables] ******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Start and enable firewalld service] ************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the firewalld service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Restart polkitd] *******************************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait for polkit action to have been created] ***************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add firewalld allow rules] *********************************
+
+TASK [os_firewall : Remove firewalld allow rules] ******************************
+
+TASK [os_firewall : Ensure firewalld service is not enabled] *******************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Wait 10 seconds after disabling firewalld] *****************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Install iptables packages] *********************************
+skipping: [10.0.2.202] => (item=iptables) 
+skipping: [10.0.2.202] => (item=iptables-services) 
+
+TASK [os_firewall : Start and enable iptables service] *************************
+skipping: [10.0.2.202]
+
+TASK [os_firewall : need to pause here, otherwise the iptables service starting can sometimes cause ssh to fail] ***
+skipping: [10.0.2.202]
+
+TASK [os_firewall : Add iptables allow rules] **********************************
+
+TASK [os_firewall : Remove iptables rules] *************************************
+
+TASK [docker : Getting current systemd-udevd exec command] *********************
+skipping: [10.0.2.202]
+
+TASK [docker : Assure systemd-udevd.service.d directory exists] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Create systemd-udevd override file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Get current installed Docker version] ***************************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if Docker pre-installed but too old] ******************
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if requested Docker is too old] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail if Docker version requested but downgrade is required] *****
+skipping: [10.0.2.202]
+
+TASK [docker : Error out if attempting to upgrade Docker across the 1.10 boundary] ***
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure docker.service.d directory exists] ***********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Docker service unit file] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set registry params] ********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'ADD_REGISTRY', u'reg_flag': u'--add-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'BLOCK_REGISTRY', u'reg_flag': u'--block-registry', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'INSECURE_REGISTRY', u'reg_flag': u'--insecure-registry', u'reg_fact_val': u''}) 
+
+TASK [docker : Set Proxy Settings] *********************************************
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'HTTP_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'HTTPS_PROXY', u'reg_fact_val': u''}) 
+skipping: [10.0.2.202] => (item={u'reg_conf_var': u'NO_PROXY', u'reg_fact_val': u''}) 
+
+TASK [docker : Set various Docker options] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : stat] ***********************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Docker Network OPTIONS] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Detect if docker is already started] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Docker service] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Check for credentials file for registry auth] *******************
+skipping: [10.0.2.202]
+
+TASK [docker : Create credentials for docker cli registry auth] ****************
+skipping: [10.0.2.202]
+
+TASK [docker : Fail quickly if openshift_docker_options are set] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-selinux is installed] **************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure atomic is installed] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure runc is installed] ***************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Docker so we can use the client] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : Disable Docker] *************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add http_proxy to /etc/atomic.conf] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add https_proxy to /etc/atomic.conf] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Add no_proxy to /etc/atomic.conf] *******************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set to default prepend] *****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Use Red Hat Registry for image when distribution is Red Hat] ****
+skipping: [10.0.2.202]
+
+TASK [docker : Use Fedora Registry for image when distribution is Fedora] ******
+skipping: [10.0.2.202]
+
+TASK [docker : Use a testing registry if requested] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Set the full image name] ****************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Pre-pull Container Engine System Container image] ***************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure container-engine.service.d directory exists] *************
+skipping: [10.0.2.202]
+
+TASK [docker : Ensure /etc/docker directory exists] ****************************
+skipping: [10.0.2.202]
+
+TASK [docker : Install Container Engine System Container] **********************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine Service File] ************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Configure Container Engine] *************************************
+skipping: [10.0.2.202]
+
+TASK [docker : Start the Container Engine service] *****************************
+skipping: [10.0.2.202]
+
+TASK [docker : set_fact] *******************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : fail] *************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_common : Set common Cluster facts] *****************************
+ok: [10.0.2.202]
+
+TASK [openshift_common : Install the base package for versioning] **************
+ok: [10.0.2.202]
+
+TASK [openshift_common : Set version facts] ************************************
+ok: [10.0.2.202]
+
+TASK [openshift_common : set_fact] *********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_common : Set hostname] *****************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_cli_facts : openshift_facts] ***********************************
+ok: [10.0.2.202]
+
+TASK [openshift_cli : Install clients] *****************************************
+ok: [10.0.2.202]
+
+TASK [openshift_cli : Pull CLI Image] ******************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_cli : Copy client binaries/symlinks out of CLI image for use on the host] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_cli : Reload facts to pick up installed OpenShift version] *****
+ok: [10.0.2.202]
+
+TASK [openshift_cli : Install bash completion for oc tools] ********************
+ok: [10.0.2.202]
+
+TASK [openshift_named_certificates : set_fact] *********************************
+skipping: [10.0.2.202]
+
+TASK [openshift_named_certificates : openshift_facts] **************************
+ok: [10.0.2.202]
+
+TASK [openshift_named_certificates : Clear named certificates] *****************
+skipping: [10.0.2.202]
+
+TASK [openshift_named_certificates : Ensure named certificate directory exists] ***
+ok: [10.0.2.202]
+
+TASK [openshift_named_certificates : Land named certificates] ******************
+
+TASK [openshift_named_certificates : Land named certificate keys] **************
+
+TASK [openshift_named_certificates : Land named CA certificates] ***************
+
+TASK [openshift_ca : fail] *****************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : fail] *****************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : Install the base package for admin tooling] ***************
+ok: [10.0.2.202 -> 10.0.2.202]
+
+TASK [openshift_ca : Reload generated facts] ***********************************
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : Create openshift_ca_config_dir if it does not exist] ******
+ok: [10.0.2.202 -> 10.0.2.202]
+
+TASK [openshift_ca : Determine if CA must be created] **************************
+ok: [10.0.2.202 -> 10.0.2.202] => (item=ca-bundle.crt)
+ok: [10.0.2.202 -> 10.0.2.202] => (item=ca.crt)
+ok: [10.0.2.202 -> 10.0.2.202] => (item=ca.key)
+
+TASK [openshift_ca : set_fact] *************************************************
+ok: [10.0.2.202]
+
+TASK [openshift_ca : Retain original serviceaccount keys] **********************
+changed: [10.0.2.202] => (item=/etc/origin/master/serviceaccounts.private.key)
+changed: [10.0.2.202] => (item=/etc/origin/master/serviceaccounts.public.key)
+
+TASK [openshift_ca : Deploy master ca certificate] *****************************
+skipping: [10.0.2.202] => (item={u'dest': u'ca.crt', u'src': u''}) 
+skipping: [10.0.2.202] => (item={u'dest': u'ca.key', u'src': u''}) 
+
+TASK [openshift_ca : Create ca serial] *****************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : find] *****************************************************
+ok: [10.0.2.202]
+
+TASK [openshift_ca : Create the master certificates if they do not already exist] ***
+changed: [10.0.2.202 -> 10.0.2.202]
+
+TASK [openshift_ca : Test local loopback context] ******************************
+ok: [10.0.2.202 -> 10.0.2.202]
+
+TASK [openshift_ca : Create temp directory for loopback master client config] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : Generate the loopback master client config] ***************
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : Copy generated loopback master client config to master config dir] ***
+skipping: [10.0.2.202] => (item=openshift-master.crt) 
+skipping: [10.0.2.202] => (item=openshift-master.key) 
+skipping: [10.0.2.202] => (item=openshift-master.kubeconfig) 
+
+TASK [openshift_ca : Delete temp directory] ************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_ca : Restore original serviceaccount keys] *********************
+ok: [10.0.2.202] => (item=/etc/origin/master/serviceaccounts.private.key)
+ok: [10.0.2.202] => (item=/etc/origin/master/serviceaccounts.public.key)
+
+TASK [openshift_ca : Remove backup serviceaccount keys] ************************
+changed: [10.0.2.202] => (item=/etc/origin/master/serviceaccounts.private.key)
+changed: [10.0.2.202] => (item=/etc/origin/master/serviceaccounts.public.key)
+
+TASK [openshift_master_certificates : set_fact] ********************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : set_fact] ********************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : Check status of master certificates] *****
+skipping: [10.0.2.202] => (item=admin.crt) 
+skipping: [10.0.2.202] => (item=master.kubelet-client.crt) 
+skipping: [10.0.2.202] => (item=master.proxy-client.crt) 
+skipping: [10.0.2.202] => (item=master.server.crt) 
+skipping: [10.0.2.202] => (item=openshift-master.crt) 
+skipping: [10.0.2.202] => (item=openshift-registry.crt) 
+skipping: [10.0.2.202] => (item=openshift-router.crt) 
+skipping: [10.0.2.202] => (item=etcd.server.crt) 
+
+TASK [openshift_master_certificates : set_fact] ********************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : Ensure the generated_configs directory present] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_master_certificates : find] ************************************
+ok: [10.0.2.202 -> 10.0.2.202]
+
+TASK [openshift_master_certificates : Create the master server certificate] ****
+skipping: [10.0.2.202] => (item=10.0.2.202) 
+
+TASK [openshift_master_certificates : Generate the loopback master client config] ***
+skipping: [10.0.2.202] => (item=10.0.2.202) 
+
+TASK [openshift_master_certificates : file] ************************************
+skipping: [10.0.2.202] => (item=admin.crt) 
+skipping: [10.0.2.202] => (item=admin.key) 
+skipping: [10.0.2.202] => (item=admin.kubeconfig) 
+skipping: [10.0.2.202] => (item=master.kubelet-client.crt) 
+skipping: [10.0.2.202] => (item=master.kubelet-client.key) 
+skipping: [10.0.2.202] => (item=ca.crt) 
+skipping: [10.0.2.202] => (item=ca.key) 
+skipping: [10.0.2.202] => (item=ca-bundle.crt) 
+skipping: [10.0.2.202] => (item=serviceaccounts.private.key) 
+skipping: [10.0.2.202] => (item=serviceaccounts.public.key) 
+skipping: [10.0.2.202] => (item=master.proxy-client.crt) 
+skipping: [10.0.2.202] => (item=master.proxy-client.key) 
+skipping: [10.0.2.202] => (item=service-signer.crt) 
+skipping: [10.0.2.202] => (item=service-signer.key) 
+
+TASK [openshift_master_certificates : Remove generated etcd client certs when using external etcd] ***
+skipping: [10.0.2.202] => (item=master.etcd-client.crt) 
+skipping: [10.0.2.202] => (item=master.etcd-client.key) 
+
+TASK [openshift_master_certificates : Create local temp directory for syncing certs] ***
+ok: [10.0.2.202 -> localhost]
+
+TASK [openshift_master_certificates : Create a tarball of the master certs] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_master_certificates : Retrieve the master cert tarball from the master] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_master_certificates : Ensure certificate directory exists] *****
+skipping: [10.0.2.202]
+
+TASK [openshift_master_certificates : Unarchive the tarball on the master] *****
+skipping: [10.0.2.202]
+
+TASK [openshift_master_certificates : Delete local temp directory] *************
+ok: [10.0.2.202 -> localhost]
+
+TASK [openshift_master_certificates : Lookup default group for ansible_ssh_user] ***
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : set_fact] ********************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : Create the client config dir(s)] *********
+ok: [10.0.2.202] => (item=root)
+
+TASK [openshift_master_certificates : Copy the admin client config(s)] *********
+changed: [10.0.2.202] => (item=root)
+
+TASK [openshift_master_certificates : Update the permissions on the admin client config(s)] ***
+ok: [10.0.2.202] => (item=root)
+
+TASK [openshift_master_certificates : Check for ca-bundle.crt] *****************
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : Check for ca.crt] ************************
+ok: [10.0.2.202]
+
+TASK [openshift_master_certificates : Migrate ca.crt to ca-bundle.crt] *********
+skipping: [10.0.2.202]
+
+TASK [openshift_master_certificates : Link ca.crt to ca-bundle.crt] ************
+skipping: [10.0.2.202]
+
+TASK [yedit] *******************************************************************
+skipping: [10.0.2.202]
+
+PLAY [Ensure node directory is absent from generated configs] ******************
+
+TASK [Ensure node directories and tarballs are absent from generated configs] ***
+changed: [10.0.2.202]
+
+PLAY [Redeploy node certificates] **********************************************
+
+TASK [Remove CA certificate] ***************************************************
+changed: [10.0.2.202] => (item=/etc/origin/node/ca.crt)
+changed: [10.0.2.203] => (item=/etc/origin/node/ca.crt)
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+skipping: [10.0.2.203]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+ok: [10.0.2.203] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+skipping: [10.0.2.203] => (item=iproute) 
+skipping: [10.0.2.203] => (item=python-dbus) 
+skipping: [10.0.2.203] => (item=PyYAML) 
+skipping: [10.0.2.203] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.203] => (item=atomic) 
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.203] => (item=ostree) 
+skipping: [10.0.2.203] => (item=runc) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.203]
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_node_certificates : Ensure CA certificate exists on openshift_ca_host] ***
+ok: [10.0.2.202 -> 10.0.2.202]
+
+TASK [openshift_node_certificates : fail] **************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_node_certificates : Check status of node certificates] *********
+skipping: [10.0.2.202] => (item=system:node:ip-10-0-2-202.us-east-2.compute.internal.crt) 
+skipping: [10.0.2.203] => (item=system:node:ip-10-0-2-203.us-east-2.compute.internal.crt) 
+skipping: [10.0.2.203] => (item=system:node:ip-10-0-2-203.us-east-2.compute.internal.key) 
+skipping: [10.0.2.202] => (item=system:node:ip-10-0-2-202.us-east-2.compute.internal.key) 
+skipping: [10.0.2.202] => (item=system:node:ip-10-0-2-202.us-east-2.compute.internal.kubeconfig) 
+skipping: [10.0.2.202] => (item=ca.crt) 
+skipping: [10.0.2.202] => (item=server.key) 
+skipping: [10.0.2.202] => (item=server.crt) 
+skipping: [10.0.2.203] => (item=system:node:ip-10-0-2-203.us-east-2.compute.internal.kubeconfig) 
+skipping: [10.0.2.203] => (item=ca.crt) 
+skipping: [10.0.2.203] => (item=server.key) 
+skipping: [10.0.2.203] => (item=server.crt) 
+
+TASK [openshift_node_certificates : set_fact] **********************************
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_node_certificates : Create openshift_generated_configs_dir if it does not exist] ***
+changed: [10.0.2.202 -> 10.0.2.202]
+ok: [10.0.2.203 -> 10.0.2.202]
+
+TASK [openshift_node_certificates : find] **************************************
+ok: [10.0.2.202 -> 10.0.2.202]
+ok: [10.0.2.203 -> 10.0.2.202]
+
+TASK [openshift_node_certificates : Generate the node client config] ***********
+changed: [10.0.2.202 -> 10.0.2.202] => (item=10.0.2.202)
+changed: [10.0.2.202 -> 10.0.2.202] => (item=10.0.2.203)
+
+TASK [openshift_node_certificates : Generate the node server certificate] ******
+changed: [10.0.2.202 -> 10.0.2.202] => (item=10.0.2.202)
+changed: [10.0.2.202 -> 10.0.2.202] => (item=10.0.2.203)
+
+TASK [openshift_node_certificates : Create local temp directory for syncing certs] ***
+ok: [10.0.2.202 -> localhost]
+ok: [10.0.2.203 -> localhost]
+
+TASK [openshift_node_certificates : Create a tarball of the node config directories] ***
+changed: [10.0.2.202 -> 10.0.2.202]
+changed: [10.0.2.203 -> 10.0.2.202]
+
+TASK [openshift_node_certificates : Retrieve the node config tarballs from the master] ***
+changed: [10.0.2.202 -> 10.0.2.202]
+changed: [10.0.2.203 -> 10.0.2.202]
+
+TASK [openshift_node_certificates : Ensure certificate directory exists] *******
+ok: [10.0.2.202]
+ok: [10.0.2.203]
+
+TASK [openshift_node_certificates : Unarchive the tarball on the node] *********
+changed: [10.0.2.202]
+changed: [10.0.2.203]
+
+TASK [openshift_node_certificates : Delete local temp directory] ***************
+ok: [10.0.2.202 -> localhost]
+ok: [10.0.2.203 -> localhost]
+
+TASK [openshift_node_certificates : Copy OpenShift CA to system CA trust] ******
+ok: [10.0.2.202] => (item={u'cert': u'/etc/origin/node/ca.crt', u'id': u'openshift'})
+ok: [10.0.2.203] => (item={u'cert': u'/etc/origin/node/ca.crt', u'id': u'openshift'})
+
+PLAY [Restart etcd] ************************************************************
+skipping: no hosts matched
+
+PLAY [Validate configuration for rolling restart] ******************************
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+
+TASK [fail] ********************************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts] *********************************************************
+changed: [10.0.2.202] => (item={u'local_facts': {u'rolling_restart_mode': u'services'}, u'role': u'common'})
+ok: [10.0.2.202] => (item={u'local_facts': {u'cluster_method': u''}, u'role': u'master'})
+
+PLAY [Create temp file on localhost] *******************************************
+
+TASK [command] *****************************************************************
+ok: [localhost -> localhost]
+
+PLAY [Check if temp file exists on any masters] ********************************
+
+TASK [stat] ********************************************************************
+ok: [10.0.2.202]
+
+PLAY [Cleanup temp file on localhost] ******************************************
+
+TASK [file] ********************************************************************
+ok: [localhost]
+
+PLAY [Warn if restarting the system where ansible is running] ******************
+
+TASK [pause] *******************************************************************
+skipping: [10.0.2.202]
+
+TASK [set_fact] ****************************************************************
+skipping: [10.0.2.202]
+
+PLAY [Restart masters] *********************************************************
+
+TASK [openshift_sanitize_inventory : Abort when conflicting deployment type variables are set] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] *****
+ok: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when deployment type is invalid] ****
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] **************
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] ***
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Detecting Operating System] ****************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : set_fact] **********************************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Validate python version] *******************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Determine Atomic Host Docker Version] ******************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : assert] ************************************************
+skipping: [10.0.2.202]
+
+TASK [openshift_facts : Load variables] ****************************************
+ok: [10.0.2.202] => (item=/usr/share/ansible/openshift-ansible/roles/openshift_facts/vars/default.yml)
+
+TASK [openshift_facts : Ensure various deps are installed] *********************
+skipping: [10.0.2.202] => (item=iproute) 
+skipping: [10.0.2.202] => (item=python-dbus) 
+skipping: [10.0.2.202] => (item=PyYAML) 
+skipping: [10.0.2.202] => (item=yum-utils) 
+
+TASK [openshift_facts : Ensure various deps for running system containers are installed] ***
+skipping: [10.0.2.202] => (item=atomic) 
+skipping: [10.0.2.202] => (item=ostree) 
+skipping: [10.0.2.202] => (item=runc) 
+
+TASK [openshift_facts : Gather Cluster facts and set is_containerized if needed] ***
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Set repoquery command] *********************************
+ok: [10.0.2.202]
+
+TASK [openshift_facts : Register that this already ran] ************************
+ok: [10.0.2.202]
+
+TASK [Restart master system] ***************************************************
+skipping: [10.0.2.202]
+
+TASK [set_fact] ****************************************************************
+skipping: [10.0.2.202]
+
+TASK [Wait for master to restart] **********************************************
+skipping: [10.0.2.202]
+
+TASK [Wait for master API to come back online] *********************************
+skipping: [10.0.2.202]
+
+TASK [Restart master] **********************************************************
+changed: [10.0.2.202]
+
+TASK [Restart master API] ******************************************************
+skipping: [10.0.2.202]
+
+TASK [Wait for master API to come back online] *********************************
+skipping: [10.0.2.202]
+
+TASK [Restart master controllers] **********************************************
+skipping: [10.0.2.202]
+
+PLAY [Restart nodes] ***********************************************************
+
+TASK [Restart docker] **********************************************************
+changed: [10.0.2.202]
+
+TASK [Update docker facts] *****************************************************
+ok: [10.0.2.202]
+
+TASK [Restart containerized services] ******************************************
+skipping: [10.0.2.202] => (item=etcd_container) 
+skipping: [10.0.2.202] => (item=openvswitch) 
+skipping: [10.0.2.202] => (item=origin-master) 
+skipping: [10.0.2.202] => (item=origin-master-api) 
+skipping: [10.0.2.202] => (item=origin-master-controllers) 
+skipping: [10.0.2.202] => (item=origin-node) 
+
+TASK [Wait for master API to come back online] *********************************
+ok: [10.0.2.202]
+
+TASK [restart node] ************************************************************
+changed: [10.0.2.202]
+
+TASK [Wait for node to be ready] ***********************************************
+FAILED - RETRYING: Wait for node to be ready (24 retries left).
+FAILED - RETRYING: Wait for node to be ready (23 retries left).
+ok: [10.0.2.202 -> 10.0.2.202]
+
+PLAY [Restart nodes] ***********************************************************
+
+TASK [Restart docker] **********************************************************
+changed: [10.0.2.203]
+
+TASK [Update docker facts] *****************************************************
+ok: [10.0.2.203]
+
+TASK [Restart containerized services] ******************************************
+skipping: [10.0.2.203] => (item=etcd_container) 
+skipping: [10.0.2.203] => (item=openvswitch) 
+skipping: [10.0.2.203] => (item=origin-master) 
+skipping: [10.0.2.203] => (item=origin-master-api) 
+skipping: [10.0.2.203] => (item=origin-master-controllers) 
+skipping: [10.0.2.203] => (item=origin-node) 
+
+TASK [Wait for master API to come back online] *********************************
+skipping: [10.0.2.203]
+
+TASK [restart node] ************************************************************
+changed: [10.0.2.203]
+
+TASK [Wait for node to be ready] ***********************************************
+ok: [10.0.2.203 -> 10.0.2.202]
+
+PLAY [Update router certificates] **********************************************
+
+TASK [Create temp directory for kubeconfig] ************************************
+ok: [10.0.2.202]
+
+TASK [Copy admin client config(s)] *********************************************
+ok: [10.0.2.202]
+
+TASK [Determine if router exists] **********************************************
+ok: [10.0.2.202]
+
+TASK [set_fact] ****************************************************************
+ok: [10.0.2.202]
+
+TASK [Update router environment variables] *************************************
+skipping: [10.0.2.202]
+
+TASK [Delete existing router certificate secret] *******************************
+changed: [10.0.2.202]
+
+TASK [Remove router service annotations] ***************************************
+changed: [10.0.2.202]
+
+TASK [Add serving-cert-secret annotation to router service] ********************
+changed: [10.0.2.202]
+
+TASK [assert] ******************************************************************
+skipping: [10.0.2.202]
+
+TASK [Read router certificate and key] *****************************************
+skipping: [10.0.2.202] => (item=) 
+skipping: [10.0.2.202] => (item=) 
+skipping: [10.0.2.202] => (item=) 
+
+TASK [Write temporary router certificate file] *********************************
+skipping: [10.0.2.202]
+
+TASK [Write temporary router key file] *****************************************
+skipping: [10.0.2.202]
+
+TASK [Replace router-certs secret] *********************************************
+skipping: [10.0.2.202]
+
+TASK [Remove temporary router certificate and key files] ***********************
+skipping: [10.0.2.202] => (item=/tmp/openshift-ansible-lSw3on/openshift-hosted-router-certificate.pem) 
+skipping: [10.0.2.202] => (item=/tmp/openshift-ansible-lSw3on/openshift-hosted-router-certificate.key) 
+
+TASK [Redeploy router] *********************************************************
+changed: [10.0.2.202]
+
+TASK [Delete temp directory] ***************************************************
+ok: [10.0.2.202]
+
+PLAY [Update registry certificates] ********************************************
+
+TASK [Create temp directory for kubeconfig] ************************************
+ok: [10.0.2.202]
+
+TASK [Copy admin client config(s)] *********************************************
+ok: [10.0.2.202]
+
+TASK [Determine if docker-registry exists] *************************************
+ok: [10.0.2.202]
+
+TASK [set_fact] ****************************************************************
+ok: [10.0.2.202]
+
+TASK [Update docker-registry environment variables] ****************************
+skipping: [10.0.2.202]
+
+TASK [Retrieve registry service IP] ********************************************
+ok: [10.0.2.202]
+
+TASK [set_fact] ****************************************************************
+ok: [10.0.2.202]
+
+TASK [Generate registry certificate] *******************************************
+changed: [10.0.2.202]
+
+TASK [Update registry certificates secret] *************************************
+changed: [10.0.2.202]
+
+TASK [Redeploy docker registry] ************************************************
+changed: [10.0.2.202]
+
+TASK [Delete temp directory] ***************************************************
+ok: [10.0.2.202]
+
+PLAY RECAP *********************************************************************
+10.0.2.202                 : ok=212  changed=31   unreachable=0    failed=0   
+10.0.2.203                 : ok=81   changed=9    unreachable=0    failed=0   
+localhost                  : ok=10   changed=0    unreachable=0    failed=0   
+
+node "ip-10-0-2-204.us-east-2.compute.internal" deleted
+pod "router-1-33tjj" deleted
+pod "router-2-deploy" deleted
+service "router" deleted
+serviceaccount "router" deleted
+deploymentconfig "router" deleted
+--> Creating router router ...
+    serviceaccount "router" created
+    deploymentconfig "router" created
+    service "router" created
+--> Success
+route "docker-registry" deleted
+route "registry-console" deleted
+route "registry-console" exposed
+route "docker-registry" exposed
